@@ -1,8 +1,10 @@
 resource "aws_instance" "test" {
-  ami           = "ami-06ee4e2261a4dc5c3"
-  instance_type = "t2.micro"
+  ami           = var.ec2_test.ami
+  instance_type = var.ec2_test.instance_type
+
+  security_groups = [aws_security_group.sg.name]
 
   tags = {
-    Name = "Test"
+    Name = "${var.ec2_test.name}"
   }
 }
